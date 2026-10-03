@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#02050c">
+<title>AlphaPulse HQ · Accès</title>
+<link rel="icon" href="/brand/favicon-32.png"><link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cy:#7fdcff;--cy2:#3fb6ff;--gold:#ffe1a0;--mut:#8fb0c8;--bad:#ff6b81;--ok:#5dffb0}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#02050c;color:#e9f6ff;font:14px Inter,system-ui,sans-serif;overflow:hidden}
+body{display:grid;place-items:center;background:radial-gradient(900px 600px at 50% 40%,rgba(63,182,255,.14),transparent 70%),linear-gradient(rgba(127,220,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(127,220,255,.04) 1px,transparent 1px),#02050c;background-size:auto,40px 40px,40px 40px,auto}
+.box{width:min(430px,94vw);text-align:center;padding:28px 24px;border:1px solid rgba(127,220,255,.28);border-radius:18px;background:rgba(8,22,44,.55);backdrop-filter:blur(12px);box-shadow:0 0 40px rgba(63,182,255,.15),inset 0 0 30px rgba(63,182,255,.06)}
+.logo{display:flex;align-items:center;justify-content:center;gap:10px;font:800 19px Orbitron,sans-serif;letter-spacing:5px;color:#fff;text-shadow:0 0 16px var(--cy2)}
+.logo img{width:30px;height:30px;border-radius:8px;object-fit:contain}
+.sub{font:600 12px Rajdhani,sans-serif;letter-spacing:3px;color:var(--mut);text-transform:uppercase;margin-top:6px}
+.cam{position:relative;width:230px;height:230px;margin:24px auto 18px}
+.cam video,.cam canvas{position:absolute;inset:14px;width:202px;height:202px;border-radius:50%;object-fit:cover;transform:scaleX(-1)}
+.cam video{filter:saturate(1.1) contrast(1.05);background:#04101f}
+.cam .ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(127,220,255,.35)}
+.cam .ring.r2{inset:6px;border-style:dashed;animation:spin 9s linear infinite;border-color:rgba(127,220,255,.25)}
+.cam svg.prog{position:absolute;inset:0;width:230px;height:230px;transform:rotate(-90deg)}
+.cam svg.prog circle{fill:none;stroke-width:4}
+.cam .line{position:absolute;left:28px;right:28px;height:2px;background:linear-gradient(90deg,transparent,var(--cy),transparent);box-shadow:0 0 12px var(--cy);top:30px;animation:sweep 2.2s ease-in-out infinite;opacity:.9}
+.cam.ok .ring{border-color:var(--ok)}.cam.ok .line{display:none}.cam.err .ring{border-color:var(--bad)}
+.cam .ph{position:absolute;inset:14px;border-radius:50%;display:grid;place-items:center;background:rgba(0,10,25,.6)}
+.cam .ph svg{width:96px;height:96px;opacity:.85}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes sweep{50%{top:196px}}
+.step{font:700 15px Rajdhani,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#fff;min-height:22px}
+.chips{display:flex;justify-content:center;gap:6px;margin:10px 0 4px}
+.chips span{font:700 10.5px Rajdhani,sans-serif;letter-spacing:1.5px;text-transform:uppercase;padding:4px 9px;border-radius:20px;border:1px solid rgba(127,220,255,.25);color:var(--mut)}
+.chips span.on{color:var(--cy);border-color:var(--cy)}.chips span.done{color:#03140d;background:var(--ok);border-color:var(--ok)}
+button{width:100%;border:0;border-radius:11px;padding:14px;font:700 14px Rajdhani,sans-serif;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;color:#00121f;background:linear-gradient(90deg,var(--cy2),var(--cy));box-shadow:0 0 20px rgba(63,182,255,.35);margin-top:14px}
+button:disabled{opacity:.5}
+.msg{min-height:20px;margin-top:12px;font:600 13px Rajdhani,sans-serif;letter-spacing:1px;color:var(--mut)}
+.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
+.form{display:none;margin-top:14px;text-align:left}
+.form label{font:700 11px Rajdhani,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--mut)}
+.form input{width:100%;margin:6px 0 0;padding:12px;border-radius:10px;border:1px solid rgba(127,220,255,.3);background:rgba(0,10,25,.6);color:#fff;outline:none;font-size:15px}
+.link{margin-top:14px;font:600 12px Rajdhani,sans-serif;letter-spacing:1.5px;color:var(--cy);text-transform:uppercase;cursor:pointer;background:none;border:0;box-shadow:none;padding:0;width:auto}
+.note{margin-top:14px;color:var(--mut);font-size:11.5px;line-height:1.5}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo"><img id="lg" alt="" class="hide">ALPHAPULSE HQ</div>
+  <div class="sub" id="sub">Accès biométrique</div>
+  <div class="cam" id="cam">
+    <div class="ring"></div><div class="ring r2"></div>
+    <svg class="prog" viewBox="0 0 230 230"><circle cx="115" cy="115" r="112" stroke="rgba(127,220,255,.12)"/><circle id="pc" cx="115" cy="115" r="112" stroke="#5dffb0" stroke-dasharray="704" stroke-dashoffset="704" stroke-linecap="round"/></svg>
+    <video id="v" playsinline muted autoplay></video><canvas id="cv" width="202" height="202"></canvas>
+    <div class="ph" id="ph"><svg viewBox="0 0 100 100" fill="none" stroke="#7fdcff" stroke-width="3" stroke-linecap="round"><path d="M20 35V24a4 4 0 0 1 4-4h11M65 20h11a4 4 0 0 1 4 4v11M80 65v11a4 4 0 0 1-4 4H65M35 80H24a4 4 0 0 1-4-4V65"/><circle cx="38" cy="42" r="2.5" fill="#7fdcff"/><circle cx="62" cy="42" r="2.5" fill="#7fdcff"/><path d="M50 42v12h-4M38 64c6 5 18 5 24 0"/></svg></div>
+    <div class="line"></div>
+  </div>
+  <div class="step" id="step">Initialisation…</div>
+  <div class="chips" id="chips"><span data-c="face">Visage</span><span data-c="turn">Mouvement</span><span data-c="blink">Clignement</span><span data-c="key">Empreinte</span></div>
+  <button id="go" class="hide">Recommencer l'analyse</button>
+  <div class="msg" id="msg"></div>
+  <div class="form" id="codeForm">
+    <label id="codeLbl">Code d'enrôlement</label>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="••••••••••••">
+    <button id="codeBtn">Valider</button>
+  </div>
+  <button class="link" id="backup">Caméra indisponible ? Code de secours</button>
+  <button class="link hide" id="add">+ Enregistrer un nouvel appareil</button>
+  <div class="note">Ton visage est analysé dans ce navigateur (mouvement + clignement pour bloquer les photos), puis vérifié par le serveur. Ensuite Touch ID / Face ID confirme avec la puce sécurisée de ton appareil. Aucune image n'est envoyée ni enregistrée.</div>
+</div>
+<script src="/vendor/simplewebauthn.js"></script>
+<script type="module">
+const { startAuthentication, startRegistration, browserSupportsWebAuthn } = SimpleWebAuthnBrowser;
+const $ = (s) => document.querySelector(s);
+const say = (t, cls = "") => { $("#msg").textContent = t; $("#msg").className = "msg " + cls; };
+const step = (t) => { $("#step").textContent = t; };
+const chip = (k, st) => { const el = document.querySelector(`[data-c=${k}]`); if (el) el.className = st || ""; };
+const prog = (k) => { $("#pc").style.strokeDashoffset = String(704 * (1 - Math.max(0, Math.min(1, k)))); };
+const post = (u, b) => fetch(u, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(b || {}) }).then(async (r) => ({ ok: r.ok, status: r.status, data: await r.json().catch(() => ({})) }));
+$("#lg").src = "/brand/icon-192.png"; $("#lg").onload = () => $("#lg").classList.remove("hide");
+
+let ST = { enrolled: false, faceEnrolled: false }, faceapi = null, stream = null, running = false;
+
+async function loadFace() {
+  if (faceapi) return faceapi;
+  step("Chargement de l'analyse faciale…");
+  faceapi = await import("/vendor/face/face-api.esm.js");
+  const tf = faceapi.tf;
+  try { await tf.setBackend("webgl"); await tf.ready(); } catch {}
+  if (tf.getBackend() !== "webgl") { await tf.setBackend("cpu"); await tf.ready(); }
+  const M = "/vendor/face/model";
+  await Promise.all([faceapi.nets.tinyFaceDetector.loadFromUri(M), faceapi.nets.faceLandmark68Net.loadFromUri(M), faceapi.nets.faceRecognitionNet.loadFromUri(M)]);
+  return faceapi;
+}
+async function openCam() {
+  if (stream) return;
+  stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 } }, audio: false });
+  $("#v").srcObject = stream; await $("#v").play(); $("#ph").classList.add("hide");
+}
+function closeCam() { stream?.getTracks().forEach((t) => t.stop()); stream = null; $("#ph").classList.remove("hide"); const c = $("#cv").getContext("2d"); c.clearRect(0, 0, 202, 202); }
+const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+function metrics(det) {
+  const p = det.landmarks.positions;
+  const L = p[36], R = p[45], N = p[30];
+  const yaw = (N.x - L.x) / Math.max(1, R.x - L.x);
+  const ear = (e) => (dist(p[e[1]], p[e[5]]) + dist(p[e[2]], p[e[4]])) / (2 * dist(p[e[0]], p[e[3]]));
+  return { yaw, ear: (ear([36, 37, 38, 39, 40, 41]) + ear([42, 43, 44, 45, 46, 47])) / 2 };
+}
+function draw(det) {
+  const c = $("#cv").getContext("2d"), v = $("#v"); c.clearRect(0, 0, 202, 202);
+  if (!det) return;
+  const vw = v.videoWidth, vh = v.videoHeight, s = Math.max(202 / vw, 202 / vh), ox = (202 - vw * s) / 2, oy = (202 - vh * s) / 2;
+  c.fillStyle = "rgba(127,220,255,.85)";
+  for (const pt of det.landmarks.positions) { c.beginPath(); c.arc(ox + pt.x * s, oy + pt.y * s, 1.3, 0, 7); c.fill(); }
+}
+async function detect() {
+  return faceapi.detectSingleFace($("#v"), new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.5 })).withFaceLandmarks().withFaceDescriptor();
+}
+const avg = (ds) => ds[0].map((_, i) => ds.reduce((s, d) => s + d[i], 0) / ds.length);
+
+/* Liveness scan → descriptor. mode "verify" | "enroll" */
+async function scan(mode) {
+  running = true; $("#go").classList.add("hide"); $("#cam").className = "cam";
+  ["face", "turn", "blink"].forEach((k) => chip(k, "")); prog(0);
+  await loadFace(); await openCam();
+  let minY = 1, maxY = 0, base = [], blinkDown = false, blink = false, turn = false, got = [], turned = [];
+  const t0 = performance.now();
+  while (running) {
+    if (performance.now() - t0 > 35000) { running = false; throw new Error("Temps écoulé. Mets-toi face à la lumière et recommence."); }
+    const det = await detect(); draw(det);
+    if (!det) { step("Place ton visage dans le cercle"); chip("face", "on"); continue; }
+    chip("face", "done");
+    const { yaw, ear } = metrics(det);
+    if (!turn) {
+      minY = Math.min(minY, yaw); maxY = Math.max(maxY, yaw);
+      step("Tourne lentement la tête à gauche, puis à droite"); chip("turn", "on");
+      if (mode === "enroll" && ((yaw > 0.36 && yaw < 0.44) || (yaw > 0.56 && yaw < 0.64)) && turned.length < 2) turned.push(Array.from(det.descriptor));
+      prog(0.15 + 0.35 * Math.min(1, ((0.5 - minY) + (maxY - 0.5)) / 0.28));
+      if (minY < 0.37 && maxY > 0.63) { turn = true; chip("turn", "done"); }
+      continue;
+    }
+    if (!blink) {
+      step("Cligne des yeux"); chip("blink", "on");
+      if (yaw > 0.42 && yaw < 0.58) { base.push(ear); if (base.length > 20) base.shift(); }
+      const b = base.length ? base.slice().sort()[Math.floor(base.length / 2)] : 0.3;
+      if (ear < b * 0.72) blinkDown = true;
+      if (blinkDown && ear > b * 0.88) { blink = true; chip("blink", "done"); }
+      prog(0.55 + (blinkDown ? 0.15 : 0));
+      continue;
+    }
+    step("Regarde la caméra…");
+    if (yaw > 0.43 && yaw < 0.57 && det.detection.score > 0.6) got.push(Array.from(det.descriptor));
+    prog(0.72 + 0.28 * (got.length / 3));
+    if (got.length >= 3) break;
+  }
+  running = false;
+  return mode === "enroll" ? { descriptors: [...got, ...turned] } : { descriptor: avg(got), liveness: { turn, blink } };
+}
+
+async function passkeyLogin(faceToken) {
+  chip("key", "on"); step("Touch ID / Face ID…");
+  const o = await post("/auth/login/options");
+  if (o.status === 409) { ST.enrolled = false; return showEnroll(); }
+  const response = await startAuthentication({ optionsJSON: o.data.options });
+  const v = await post("/auth/login/verify", { ck: o.data.ck, response, faceToken });
+  if (!v.ok) throw new Error(v.data.error || "Refusé");
+  chip("key", "done");
+}
+function welcome() { $("#cam").className = "cam ok"; prog(1); step("Identité confirmée"); say("Bienvenue.", "ok"); closeCam(); setTimeout(() => location.replace("/"), 700); }
+
+async function flowLogin() {
+  try {
+    say("");
+    if (!browserSupportsWebAuthn()) throw new Error("Ce navigateur ne supporte pas Touch ID / Face ID.");
+    if (ST.faceEnrolled) {
+      const r = await scan("verify");
+      step("Vérification du visage…");
+      const v = await post("/auth/face/verify", r);
+      if (!v.ok) throw new Error(v.data.error || "Visage non reconnu");
+      await passkeyLogin(v.data.faceToken);
+      return welcome();
+    }
+    await passkeyLogin(null);
+    await flowEnrollFace("Dernière étape : enregistre ton visage");
+  } catch (e) { fail(e); }
+}
+async function flowEnrollFace(title) {
+  try {
+    step(title); say("La caméra va analyser ton visage (3 secondes).");
+    const r = await scan("enroll");
+    const v = await post("/auth/face/enroll", { descriptors: r.descriptors, replace: true });
+    if (!v.ok) throw new Error(v.data.error || "Erreur");
+    welcome();
+  } catch (e) { fail(e); }
+}
+function fail(e) {
+  running = false; $("#cam").className = "cam err";
+  const m = e?.name === "NotAllowedError" ? "Annulé ou non reconnu." : e?.name === "NotReadableError" || e?.name === "NotFoundError" ? "Caméra indisponible." : String(e?.message || e);
+  step("Accès refusé"); say(m, "err"); $("#go").classList.remove("hide");
+}
+function showEnroll() {
+  closeCam(); $("#codeForm").style.display = "block"; $("#codeLbl").textContent = "Code d'enrôlement (une seule fois par appareil)";
+  $("#codeBtn").textContent = "Enregistrer cet appareil"; $("#codeBtn").onclick = register; step("Nouvel appareil"); $("#pw").focus();
+}
+async function register() {
+  $("#codeBtn").disabled = true;
+  try {
+    let faceToken = null;
+    if (ST.faceEnrolled) {
+      $("#codeForm").style.display = "none";
+      const r = await scan("verify"); step("Vérification du visage…");
+      const fv = await post("/auth/face/verify", r);
+      if (!fv.ok) throw new Error(fv.data.error || "Visage non reconnu");
+      faceToken = fv.data.faceToken; $("#codeForm").style.display = "block";
+    }
+    const a = await post("/auth/enroll-password", { password: $("#pw").value, faceToken });
+    if (!a.ok) throw new Error(a.data.error || "Refusé");
+    const o = await post("/auth/register/options");
+    if (!o.ok) throw new Error(o.data.error || "Erreur");
+    step("Touch ID / Face ID…");
+    const response = await startRegistration({ optionsJSON: o.data.options });
+    const v = await post("/auth/register/verify", { ck: o.data.ck, response, device: navigator.platform });
+    if (!v.ok) throw new Error(v.data.error || "Erreur");
+    $("#codeForm").style.display = "none";
+    if (!ST.faceEnrolled) return flowEnrollFace("Enregistre ton visage");
+    welcome();
+  } catch (e) { say(e.name === "NotAllowedError" ? "Annulé." : String(e.message || e), "err"); }
+  finally { $("#codeBtn").disabled = false; }
+}
+async function backup() {
+  running = false; closeCam(); $("#codeForm").style.display = "block"; $("#codeLbl").textContent = "Code de secours";
+  $("#codeBtn").textContent = "Continuer avec Touch ID / Face ID"; step("Code de secours"); $("#pw").focus();
+  $("#codeBtn").onclick = async () => {
+    try {
+      const r = await post("/auth/face/backup", { password: $("#pw").value });
+      if (!r.ok) throw new Error(r.data.error || "Refusé");
+      await passkeyLogin(r.data.faceToken);
+      $("#codeForm").style.display = "none";
+      await flowEnrollFace("Réenregistre ton visage");
+    } catch (e) { say(e.name === "NotAllowedError" ? "Annulé." : String(e.message || e), "err"); }
+  };
+}
+$("#go").onclick = () => (ST.enrolled ? flowLogin() : showEnroll());
+$("#backup").onclick = backup;
+$("#add").onclick = showEnroll;
+$("#pw").addEventListener("keydown", (e) => { if (e.key === "Enter") $("#codeBtn").click(); });
+ST = await fetch("/auth/status").then((r) => r.json());
+if (!ST.enrolled) { $("#backup").classList.add("hide"); say("Premier accès : enregistre cet appareil."); showEnroll(); }
+else { $("#add").classList.remove("hide"); flowLogin(); }
+</script>
+</body>
+</html>
