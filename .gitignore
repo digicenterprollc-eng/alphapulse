@@ -1,0 +1,22 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# runtime data (database, agents' workspace, published sites, sessions)
+data/
+*.db
+*.db-*
+work/
+sites/
+# dependencies and downloaded libraries (see setup.sh)
+node_modules/
+public/vendor/*
+!public/vendor/simplewebauthn.js
+kit/vendor/
+kit/motion.js
+bin/
+# misc
+.DS_Store
+*.log

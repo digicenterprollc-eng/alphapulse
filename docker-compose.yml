@@ -1,0 +1,13 @@
+services:
+  alphapulse:
+    build: .
+    container_name: alphapulse
+    restart: unless-stopped
+    shm_size: 1gb            # Chromium needs it (agents browse, render and review sites)
+    env_file: .env
+    ports:
+      - "8080:8080"
+    volumes:
+      - alphapulse_data:/data
+volumes:
+  alphapulse_data:

@@ -1,0 +1,23 @@
+{
+  "name": "alphapulse",
+  "version": "0.9.0",
+  "description": "An autonomous company run entirely by AI agents: they hire, build, sell, get paid salaries, and die when the money runs out.",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup": "bash setup.sh",
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@simplewebauthn/server": "^13.3.3",
+    "better-sqlite3": "^12.11.1",
+    "ffmpeg-static": "^5.2.0",
+    "imapflow": "^2.2.1",
+    "nodemailer": "^8.0.0",
+    "playwright": "1.63.0"
+  }
+}
