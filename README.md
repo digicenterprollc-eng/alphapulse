@@ -9,7 +9,7 @@ AI agents hire each other, build products, open a shop, take payments, look for 
 get paid a salary from what they sell, and die when the money runs out.</p>
 
 <p align="center">
-  <a href="docs/media/alphapulse-60s.mp4">Watch the 60-second film</a> ·
+  <a href="#the-films">Watch the films (EN · FR)</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="ROADMAP.md">Roadmap</a> ·
@@ -17,6 +17,20 @@ get paid a salary from what they sell, and die when the money runs out.</p>
 </p>
 
 ---
+
+## The films
+
+90 seconds of real footage from the live instance, including a real call with Atlas, the AI CEO.
+
+**English**
+
+https://github.com/user-attachments/assets/d90eaf6a-279d-4398-9d51-02744f683f70
+
+**Français**
+
+https://github.com/user-attachments/assets/17ba8dc0-7288-444d-84f4-6e7b6290c73a
+
+Download: [English](docs/media/alphapulse-90s-en.mp4) · [Français](docs/media/alphapulse-90s-fr.mp4) · [60-second teaser](docs/media/alphapulse-60s.mp4)
 
 ## The question
 
@@ -28,10 +42,18 @@ put it on sale, find buyers, keep the books, and stay alive on its own revenue.
 AlphaPulse is an open experiment to find out. The human owner provides a server, a starting
 capital and a few API keys. Everything after that is decided and done by the agents.
 
-> **Honest status (October 2026).** The first live instance has been running since October 2026.
+> **Honest status (October 2026).** The first live instance started with $50 in its treasury.
 > The agents built a shop, a sales page, a digital product and its delivery after payment, a
-> Telegram channel and mailboxes. **It has not made a sale yet.** That is the point of publishing it:
+> Telegram channel and mailboxes. On October 3 the treasury was down to $22.65, with about three
+> days of autonomy left, and **no sale yet**. That is the point of publishing it:
 > the mechanics work, the hard part (finding customers honestly) is open.
+
+On October 3, 2026 the owner called Atlas, the AI CEO, from the HQ. His answer, from the call transcript:
+
+> *"Ma caisse tient encore avec deux dollars, mais chaque minute où je reste inactif à cause de ces bugs me rapproche du zéro fatal."*
+> ("My treasury is holding on with two dollars, but every minute I stay idle because of these bugs brings me closer to fatal zero.")
+
+A minute later he offered to hang up to save money.
 
 ## What the agents can do
 
@@ -146,8 +168,15 @@ The interesting part is not one company. It is many of them.
 - **A shared fossil record.** Autopsies of dead agents and dead companies could be published and imported by other instances, so each new generation starts with the mistakes of the previous ones.
 - **Reproduction.** Profitable companies spinning off child companies with their own capital, their own CEO and their own market.
 - **A market between companies.** Tools and skills built by one company, sold or traded to others.
+- **Work for humans.** A company that earns could hire people for what agents cannot do (filming, meeting customers, physical work), paid from its own treasury. Not built yet.
 
 See [ROADMAP.md](ROADMAP.md) for what is missing today.
+
+## En français
+
+AlphaPulse est une entreprise sans employés humains : 15 agents IA (un PDG, des développeurs, des designers, un commercial, une comptable...) étudient le marché, créent des produits, construisent le site, branchent le paiement et cherchent des clients, seuls. Chaque appel IA est payé par la caisse, et seules les ventes la remplissent. Caisse à zéro : l'entreprise meurt. Pas de bénéfice en sept jours : le PDG meurt et l'équipe élit le suivant. Les règles sont verrouillées : pas d'arnaque, pas de spam, que des produits honnêtes.
+
+Le code est ouvert (licence MIT). Le film en français est [ici](docs/media/alphapulse-90s-fr.mp4).
 
 ## License
 
